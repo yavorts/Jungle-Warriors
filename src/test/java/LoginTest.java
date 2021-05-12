@@ -62,20 +62,27 @@ public class LoginTest extends BaseTest {
         Thread.sleep(5000);
         WhenWhyPage whenPage = new WhenWhyPage(driver);
         whenPage.setHireDate(GetDataFromExcel.getData().get(1));
-        whenPage.setWhenWhyOptionFromText("Legal Employer", GetDataFromExcel.getData().get(2));
-        Thread.sleep(500);
+
         whenPage.setWhenWhyOptionFromText("hire an employee?", GetDataFromExcel.getData().get(3));
-        Thread.sleep(500);
+        whenPage.setWhenWhyOptionFromText("Legal Employer", GetDataFromExcel.getData().get(2));
         whenPage.setWhenWhyOptionFromText("Why are you hiring an employee?", GetDataFromExcel.getData().get(4));
+
 //        whenPage.setWhenWhyOptionFromText("Why are you making changes to direct reports?", GetDataFromExcel.getData().get(5));
-        Thread.sleep(500);
         whenPage.clickContinueButton();
-        Thread.sleep(500);
         PersonalDetailsPage detailsPage = new PersonalDetailsPage(driver);
-        detailsPage.setTitle(GetDataFromExcel.getData().get(6));
-        detailsPage.setPersonalDetailsOptionFromText("First Name", GetDataFromExcel.getData().get(7));
-        detailsPage.setPersonalDetailsOptionFromText("Middle Name", GetDataFromExcel.getData().get(8));
-        detailsPage.setPersonalDetailsOptionFromText("Last Name", GetDataFromExcel.getData().get(9));
+        detailsPage.setTitle(GetDataFromExcel.getData().get(7));
+        detailsPage.setPersonalDetailsOptionFromText("First Name", GetDataFromExcel.getData().get(8));
+        detailsPage.setPersonalDetailsOptionFromText("Middle Name", GetDataFromExcel.getData().get(9));
+        detailsPage.setPersonalDetailsOptionFromText("Last Name", GetDataFromExcel.getData().get(10));
+        detailsPage.setGender(GetDataFromExcel.getData().get(11));
+        detailsPage.setDateOfBirth(GetDataFromExcel.getData().get(12));
+        detailsPage.setPersonalDetailsOptionFromText("Country of Birth", GetDataFromExcel.getData().get(13));
+        detailsPage.setPersonalDetailsOptionFromText("Regiom of Birth", GetDataFromExcel.getData().get(14));
+        detailsPage.setPersonalDetailsOptionFromText("Country", GetDataFromExcel.getData().get(17));
+        detailsPage.setNationalIdType(GetDataFromExcel.getData().get(18));
+        detailsPage.clickContinueButton();
+
+
     }
 
     @AfterTest

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import utils.WaitUtils;
 
 import java.util.List;
+import java.util.Locale;
 
 public class PersonalDetailsPage {
     WebDriver driver;
@@ -48,19 +49,26 @@ public class PersonalDetailsPage {
     public void setTitle(String information) {
         WaitUtils.waitForClickableElement(title, driver);
         title.click();
-        switchToIframeAndClickElementFromText(information);
+        String locator =  getLocatorFromText(information.toUpperCase());
+        WebElement element = driver.findElement(By.cssSelector(locator));
+        element.click();
     }
 
     public void setGender(String information) {
         WaitUtils.waitForClickableElement(gender, driver);
         gender.click();
-        switchToIframeAndClickElementFromText(information);
+        String substring = information.substring(0,1);
+        String locator =  getLocatorFromText(substring);
+        WebElement element = driver.findElement(By.cssSelector(locator));
+        element.click();
     }
 
     public void setNationalIdType(String information) {
         WaitUtils.waitForClickableElement(nationalIdType, driver);
         nationalIdType.click();
-        switchToIframeAndClickElementFromText(information);
+       String locator =  getLocatorFromText(information);
+        WebElement element = driver.findElement(By.cssSelector(locator));
+        element.click();
     }
 
     public void setDateOfBirth(String information) {
@@ -73,11 +81,10 @@ public class PersonalDetailsPage {
         continueButton.click();
     }
 
-    private void switchToIframeAndClickElementFromText(String text) {
-        driver.switchTo().frame(iframeElement);
-        WebElement element = driver.findElement(By.cssSelector("#__af_Z_window li[_adfiv='" + text + "']"));
-        element.click();
-        driver.switchTo().defaultContent();
+    private String getLocatorFromText(String text) {
+        String locator = "#__af_Z_window li[_adfiv='" + text.toUpperCase() + "']";
+        WebElement element = driver.findElement(By.cssSelector(locator));
+        return locator;
     }
 }
 
