@@ -7,9 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.WaitUtils;
 
-import java.util.List;
-import java.util.Locale;
-
 public class PersonalDetailsPage {
     WebDriver driver;
 
@@ -27,6 +24,9 @@ public class PersonalDetailsPage {
 
     @FindBy(xpath = "//*[contains(text(),'National')]/../..//input[@role]")
     private WebElement nationalIdType;
+
+    @FindBy(xpath = "//*[contains(text(),'National ID')]/../../..//div[@class='xkg xk4 x1u']//input")
+    private WebElement nationalIDNumber;
 
     @FindBy(css = "[title='Continue']")
     private WebElement continueButton;
@@ -69,6 +69,11 @@ public class PersonalDetailsPage {
        String locator =  getLocatorFromText(information);
         WebElement element = driver.findElement(By.cssSelector(locator));
         element.click();
+    }
+
+    public void setNationalIDNumber(String natNumber) {
+        WaitUtils.waitForClickableElement(nationalIDNumber, driver);
+        nationalIDNumber.sendKeys(natNumber);
     }
 
     public void setDateOfBirth(String information) {

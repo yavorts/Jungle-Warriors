@@ -31,7 +31,7 @@ public class LoginTest extends BaseTest {
 
     @DataProvider(name = "data-provider")
     public Object[][] dpMethod() {
-        return new Object[][]{{"curtis.feitty", "snd93497"}};
+        return new Object[][]{{"curtis.feitty", "ANP8e^9#"}};
     }
 //    public Object[][] dpMethod() {
 //        return new Object[][]{{"curtis.feitty", "bUp49695"}};
@@ -69,18 +69,23 @@ public class LoginTest extends BaseTest {
 
 //        whenPage.setWhenWhyOptionFromText("Why are you making changes to direct reports?", GetDataFromExcel.getData().get(5));
         whenPage.clickContinueButton();
+        Thread.sleep(5000);
         PersonalDetailsPage detailsPage = new PersonalDetailsPage(driver);
         detailsPage.setTitle(GetDataFromExcel.getData().get(7));
         detailsPage.setPersonalDetailsOptionFromText("First Name", GetDataFromExcel.getData().get(8));
         detailsPage.setPersonalDetailsOptionFromText("Middle Name", GetDataFromExcel.getData().get(9));
         detailsPage.setPersonalDetailsOptionFromText("Last Name", GetDataFromExcel.getData().get(10));
         detailsPage.setGender(GetDataFromExcel.getData().get(11));
-        detailsPage.setDateOfBirth(GetDataFromExcel.getData().get(12));
+        detailsPage.setDateOfBirth("1/5/1986");
         detailsPage.setPersonalDetailsOptionFromText("Country of Birth", GetDataFromExcel.getData().get(13));
-        detailsPage.setPersonalDetailsOptionFromText("Regiom of Birth", GetDataFromExcel.getData().get(14));
-        detailsPage.setPersonalDetailsOptionFromText("Country", GetDataFromExcel.getData().get(17));
-        detailsPage.setNationalIdType(GetDataFromExcel.getData().get(18));
+        detailsPage.setPersonalDetailsOptionFromText("Region of Birth", GetDataFromExcel.getData().get(14));
+        detailsPage.setPersonalDetailsOptionFromText("Country", GetDataFromExcel.getData().get(15));
+        detailsPage.setNationalIdType(GetDataFromExcel.getData().get(16));
+        detailsPage.setNationalIDNumber(GetDataFromExcel.getData().get(17));
         detailsPage.clickContinueButton();
+        CommunicationInfo communicationInfo = new CommunicationInfo(driver);
+        communicationInfo.setPhoneType(GetDataFromExcel.getData().get(18));
+        communicationInfo.setCountry(GetDataFromExcel.getData().get(19));
 
 
     }
