@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.WaitUtils;
+import utils.WebElementUtils;
 
 public class PersonalDetailsPage {
     WebDriver driver;
@@ -66,7 +67,8 @@ public class PersonalDetailsPage {
     public void setNationalIdType(String information) {
         WaitUtils.waitForClickableElement(nationalIdType, driver);
         nationalIdType.click();
-       String locator =  getLocatorFromText(information);
+        String substringInformation = information.substring(0, 3);
+       String locator =  getLocatorFromText(substringInformation);
         WebElement element = driver.findElement(By.cssSelector(locator));
         element.click();
     }
@@ -77,6 +79,7 @@ public class PersonalDetailsPage {
     }
 
     public void setDateOfBirth(String information) {
+        WebElementUtils.scrollElementIntoView(driver, dateOfBirth);
         WaitUtils.waitForClickableElement(dateOfBirth, driver);
         dateOfBirth.sendKeys(information);
     }
@@ -87,7 +90,7 @@ public class PersonalDetailsPage {
     }
 
     private String getLocatorFromText(String text) {
-        String locator = "#__af_Z_window li[_adfiv='" + text.toUpperCase() + "']";
+        String locator = "#__af_Z_window li[_adfiv *='" + text.toUpperCase() + "']";
         WebElement element = driver.findElement(By.cssSelector(locator));
         return locator;
     }

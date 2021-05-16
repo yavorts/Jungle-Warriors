@@ -36,7 +36,20 @@ public class WhenWhyPage {
         if(driver.findElement(By.xpath(locator)).isDisplayed()) {
         WebElement element = driver.findElement(By.xpath(locator));
             WaitUtils.waitForClickableElement(element, driver);
-            element.clear();
+//            element.clear();
+            element.sendKeys(information);
+        }
+    }
+
+
+    public void setLegalEmployer(String whenWhyOption, String information) {
+//        PageFactory.initElements(driver, this);
+        WaitUtils.waitForDocumentReadyState(driver);
+        String locator = "//*[contains(text(),'" + whenWhyOption + "')]/../..//input[@type='text']";
+        if(driver.findElement(By.xpath(locator)).isDisplayed()) {
+            WebElement element = driver.findElement(By.xpath(locator));
+//            WaitUtils.waitForClickableElement(element, driver);
+//            element.clear();
             element.sendKeys(information);
         }
     }

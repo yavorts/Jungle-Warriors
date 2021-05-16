@@ -70,7 +70,6 @@ public class GetDataFromExcel {
 
 
         }
-        System.out.println(valueList);
         return valueList;
     }
 
