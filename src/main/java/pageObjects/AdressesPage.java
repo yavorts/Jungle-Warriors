@@ -1,6 +1,7 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,20 +32,24 @@ public class AdressesPage {
     @FindBy(xpath = "//*[contains(text(),'Address')]/../..//div[@class='xkg xk4 x1u']//input[@type='text']")
     private List<WebElement> addressNumberComplementNeighbourhood;
 
+    @FindBy(xpath = "//*[contains(text(),'City')]/../..//span[@class='xdu xkg x1a']//input[@type='text']")
+    private WebElement city;
+
+    @FindBy(xpath = "//*[contains(text(),'State')]/../..//span[@class='xdu xkg x1a']//input[@type='text']")
+    private WebElement state;
+
+    @FindBy(css = "[title='Continue']")
+    private WebElement continueButton;
+
     public AdressesPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         WaitUtils.waitForDocumentReadyState(driver);
     }
 
-    public void setPhoneType(String option) {
-        WaitUtils.waitForClickableElement(typeDropdown, driver);
-        typeDropdown.click();
-        WebElementUtils.clickElementWithTextFromListOfElements(option, typeDropdownOptions);
-    }
-
-    public void setPhoneDetailsFromOption(String detailsOption, String information) {
-        WebElement webElement = driver.findElement(By.xpath("//*[contains(text(),'" + detailsOption + "')]/../..//input"));
+    public void setAdressDetailsFromOption(String detailsOption, String information) {
+        WebElement webElement =
+                WebElementUtils.getElementWithTextFromListOfElements(detailsOption, addressNumberComplementNeighbourhood);
         WaitUtils.waitForClickableElement(webElement, driver);
         webElement.sendKeys(information);
     }
@@ -52,6 +57,38 @@ public class AdressesPage {
     public void setCountry(String information) {
         WaitUtils.waitForClickableElement(country, driver);
         country.sendKeys(information);
+        country.sendKeys(Keys.ENTER);
+    }
+
+    public void setType(String option) {
+        WaitUtils.waitForClickableElement(typeDropdown, driver);
+        typeDropdown.click();
+        WebElementUtils.clickElementWithTextFromListOfElements(option, typeDropdownOptions);
+    }
+
+    public void setPostalCode(String information) {
+        WaitUtils.waitForClickableElement(postalCode, driver);
+        postalCode.sendKeys(information);
+    }
+
+    public void setAddressSite(String information) {
+        WaitUtils.waitForClickableElement(addressSite, driver);
+        addressSite.sendKeys(information);
+    }
+
+    public void setCity(String information) {
+        WaitUtils.waitForClickableElement(city, driver);
+        city.sendKeys(information);
+    }
+
+    public void setState(String information) {
+        WaitUtils.waitForClickableElement(state, driver);
+        state.sendKeys(information);
+    }
+
+    public void clickContinueButton() {
+        WaitUtils.waitForClickableElement(continueButton, driver);
+        continueButton.click();
     }
 
 }

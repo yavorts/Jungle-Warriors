@@ -85,9 +85,24 @@ public class LoginTest extends BaseTest {
         detailsPage.setNationalIDNumber(GetDataFromExcel.getData().get(17));
         detailsPage.clickContinueButton();
         CommunicationInfo communicationInfo = new CommunicationInfo(driver);
-        communicationInfo.setPhoneType(GetDataFromExcel.getData().get(18));
-        communicationInfo.setCountry(GetDataFromExcel.getData().get(19));
-
+        communicationInfo.setPhoneType(GetDataFromExcel.getData().get(19));
+        communicationInfo.setCountry(GetDataFromExcel.getData().get(20));
+        communicationInfo.setPhoneDetailsFromOption("Area Code", GetDataFromExcel.getData().get(21));
+        communicationInfo.setPhoneDetailsFromOption("Number", GetDataFromExcel.getData().get(22));
+        communicationInfo.setEmailType(GetDataFromExcel.getData().get(24));
+        communicationInfo.setEmail(GetDataFromExcel.getData().get(25));
+        communicationInfo.clickContinueButton();
+        AdressesPage adressesPage = new AdressesPage(driver);
+        adressesPage.setCountry(GetDataFromExcel.getData().get(27));
+        adressesPage.setType(GetDataFromExcel.getData().get(28));
+        adressesPage.setAdressDetailsFromOption("Postal Code", GetDataFromExcel.getData().get(29));
+        adressesPage.setAdressDetailsFromOption("Address", GetDataFromExcel.getData().get(31));
+        adressesPage.setAdressDetailsFromOption("Number", GetDataFromExcel.getData().get(32));
+        adressesPage.setAdressDetailsFromOption("Complement", GetDataFromExcel.getData().get(33));
+        adressesPage.setAdressDetailsFromOption("Neighborhood", GetDataFromExcel.getData().get(34));
+        adressesPage.setCity(GetDataFromExcel.getData().get(35));
+        adressesPage.setState(GetDataFromExcel.getData().get(36));
+        adressesPage.clickContinueButton();
 
     }
 

@@ -31,6 +31,9 @@ public class CommunicationInfo {
     @FindBy(xpath = "//*[contains(text(),'Email')]/../..//input[@type='text']")
     private WebElement email;
 
+    @FindBy(css = "[title='Continue']")
+    private WebElement continueButton;
+
     public CommunicationInfo(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -58,5 +61,15 @@ public class CommunicationInfo {
         WaitUtils.waitForClickableElement(emailsDropdown, driver);
         emailsDropdown.click();
         WebElementUtils.clickElementWithTextFromListOfElements(option, emailsDropdownOptions);
+    }
+
+    public void setEmail(String emailText) {
+        WaitUtils.waitForClickableElement(email, driver);
+        email.sendKeys(emailText);
+    }
+
+    public void clickContinueButton() {
+        WaitUtils.waitForClickableElement(continueButton, driver);
+        continueButton.click();
     }
 }
